@@ -79,11 +79,12 @@ class conversor extends JFrame implements ActionListener, KeyListener {
 		add(cajaConvertir);
 
 		combo1 = new JComboBox<String>();
-		combo1.addActionListener(this);
 		combo1.addItem("Centigrados");
 		combo1.addItem("Fahrenheit");
 		combo1.addItem("Kelvin");
 		combo1.addItem("Rankine");
+		combo1.addActionListener(this);
+		
 		add(combo1);
 
 		JLabel lblA = new JLabel("A: ");
@@ -113,11 +114,7 @@ class conversor extends JFrame implements ActionListener, KeyListener {
 		try {
 			Integer.parseInt(cajaConvertir.getText());
 			numero = cajaConvertir.getText().charAt(0);
-			/*
-			 * if (!Character.isDigit(numero)) {
-			 * 
-			 * }
-			 */} catch (Exception e) {
+			} catch (Exception e) {
 			// TODO: handle exception
 			JOptionPane.showMessageDialog(rootPane, "No es un número");
 		}
@@ -138,19 +135,20 @@ class conversor extends JFrame implements ActionListener, KeyListener {
 		String VRankine[] = { "Fahrenheit", "Kelvin", "Centigrados" };
 
 		if (e.getSource() == combo1) {
+			combo2.removeAllItems();
+			
 			if (combo1.getSelectedItem().equals("Centigrados")) {
 				for (String x : VCentigrados) {
 					combo2.addItem(x);
 				}
 				if (combo2.getSelectedItem().equals("Fahrenheit")) {
-
+					cajaResultado.setText(((Double.parseDouble((cajaConvertir.getText()))*1.8)+32)+"");
 				}
-				if (combo2.getSelectedItem().equals("Kelvin")) {
-
+				else if (combo2.getSelectedItem().equals("Kelvin")) {
+					cajaResultado.setText((Double.parseDouble((cajaConvertir.getText())+273.15))+"");
 				}
-				if (combo2.getSelectedItem().equals("Rankine")) {
-
-				}
+				else if (combo2.getSelectedItem().equals("Rankine")) {
+					cajaResultado.setText(((Double.parseDouble((cajaConvertir.getText()))*1.8)+491.67)+"");				}
 
 			} else if (combo1.getSelectedItem().equals("Fahrenheit")) {
 				for (String x : VFahrenheit) {
@@ -158,42 +156,42 @@ class conversor extends JFrame implements ActionListener, KeyListener {
 				}
 
 				if (combo2.getSelectedItem().equals("Centigrados")) {
-
+					cajaResultado.setText((Double.parseDouble((cajaConvertir.getText()))-32 )/1.8+"");
+				}
+				
+				else if (combo2.getSelectedItem().equals("Kelvin")) {
+					cajaResultado.setText((Double.parseDouble((cajaConvertir.getText()))+459.67 )/1.8+"");
 				}
 
-				if (combo2.getSelectedItem().equals("Kelvin")) {
-
-				}
-
-				if (combo2.getSelectedItem().equals("Rankine")) {
-
+				else if (combo2.getSelectedItem().equals("Rankine")) {
+					cajaResultado.setText((Double.parseDouble((cajaConvertir.getText()))+459.67 )+"");
 				}
 			} else if (combo1.getSelectedItem().equals("Kelvin")) {
 				for (String x : VKelvin) {
 					combo2.addItem(x);
 				}
 				if (combo2.getSelectedItem().equals("Fahrenheit")) {
-
+					cajaResultado.setText((Double.parseDouble((cajaConvertir.getText())) -273.15)+"");
 				}
-				if (combo2.getSelectedItem().equals("Centigrados")) {
-
+				else if (combo2.getSelectedItem().equals("Centigrados")) {
+					cajaResultado.setText((((Double.parseDouble((cajaConvertir.getText())) -273.15)*1.8)+32)+"");
 				}
 
-				if (combo2.getSelectedItem().equals("Rankine")) {
-
+				else if (combo2.getSelectedItem().equals("Rankine")) {
+					cajaResultado.setText((Double.parseDouble((cajaConvertir.getText())) *1.8)+"");
 				}
 			} else if (combo1.getSelectedItem().equals("Rankine")) {
 				for (String x : VRankine) {
 					combo2.addItem(x);
 				}
 				if (combo2.getSelectedItem().equals("Fahrenheit")) {
-
+					cajaResultado.setText((Double.parseDouble((cajaConvertir.getText())) -491.67)/1.8+"");
 				}
-				if (combo2.getSelectedItem().equals("Centigrados")) {
-
+				else if (combo2.getSelectedItem().equals("Centigrados")) {
+					cajaResultado.setText((Double.parseDouble((cajaConvertir.getText())) -459.67)+"");
 				}
-				if (combo2.getSelectedItem().equals("Kelvin")) {
-
+				else if (combo2.getSelectedItem().equals("Kelvin")) {
+					cajaResultado.setText((Double.parseDouble((cajaConvertir.getText())) /1.8)+"");
 				}
 			}
 		}
